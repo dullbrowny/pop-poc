@@ -6,12 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "<REPLACE_WITH_YOUR_GIT_URL>"
-    path: gitops/core/policy/manifests/manifests
+    repoURL: "https://github.com/dullbrowny/pop-poc"
+    path: gitops/core/policy
     directory:
-      recurse: true    directory:
-      recurse: true  destination:
+      recurse: true
+  destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: gatekeeper-system
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
+
