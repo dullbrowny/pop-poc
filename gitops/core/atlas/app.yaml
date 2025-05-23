@@ -6,11 +6,20 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "<YOUR-REPO-URL>"
-    path: gitops/core/atlas
+    repoURL: "https://github.com/dullbrowny/pop-poc"
+    chart: apache-atlas
+    repoURL: "https://spanda-repo.example.com/helm-charts" # replace with your chart repo
+    targetRevision: "2.3.0"
+    helm:
+      values: |
+        image:
+          repository: sburn/apache-atlas
+          tag: "2.3.0"
   destination:
     server: https://kubernetes.default.svc
     namespace: metadata
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
 
