@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: neo4j
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: neo4j
+    targetRevision: latest
+    helm:
+      values: |
+        auth:
+          username: demo
+          password: Demo123
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+          limits:
+            cpu: 1
+            memory: 1Gi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metadata
+  syncPolicy:
+    automated: {}
+

@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: atlas
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "<YOUR-REPO-URL>"
+    path: gitops/core/atlas
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metadata
+  syncPolicy:
+    automated: {}
+
