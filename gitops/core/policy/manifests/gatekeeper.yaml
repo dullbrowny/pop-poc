@@ -1,17 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: policy-app
+  name: gatekeeper
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: "<REPLACE_WITH_YOUR_GIT_URL>"
-    path: gitops/core/policy/manifests/manifests
-    directory:
-      recurse: true    directory:
-      recurse: true  destination:
+    repoURL: "<YOUR-REPO-URL>"
+    path: gitops/core/policy/manifests
+  destination:
     server: https://kubernetes.default.svc
     namespace: default
   syncPolicy:
     automated: {}
+
