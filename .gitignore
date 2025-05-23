@@ -1,0 +1,20 @@
+# OS artifacts
+.DS_Store
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+
+# Kubernetes manifests
+
+# GitOps secrets
+gitops/.env
+
+# Helm
+charts/*.tgz
+
+# Node modules
+node_modules/
+
+# Python venv
+.venv/

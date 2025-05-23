@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingestion-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "<REPLACE_WITH_YOUR_GIT_URL>"
+    path: gitops/modules/ingestion
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingestion
+  syncPolicy:
+    automated: {}
