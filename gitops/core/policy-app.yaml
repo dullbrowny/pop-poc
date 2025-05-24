@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: "https://github.com/dullbrowny/pop-poc"
-    path: gitops/core/policy
+    path: gitops/core/policy/manifests
     directory:
       recurse: true
   destination:
