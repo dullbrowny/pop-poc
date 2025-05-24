@@ -23,12 +23,6 @@ spec:
         service:
           type: ClusterIP
 
-        ## (Temp) turn off liveness/readiness probes until it’s healthy
-        livenessProbe:
-          enabled: false
-        readinessProbe:
-          enabled: false
-
         ## resource requests/limits
         resources:
           requests:
