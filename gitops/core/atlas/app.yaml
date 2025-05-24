@@ -5,19 +5,18 @@ metadata:
   namespace: argocd
 spec:
   project: default
+
+  # point at your local manifests instead of a non-existent Helm chart
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: apache-atlas
-    targetRevision: "5.0.0"
-    helm:
-      values: |
-        image:
-          registry: docker.io
-          repository: bitnami/apache-atlas
-          tag: "2.3.0-debian-10-r0"
+    repoURL: "https://github.com/dullbrowny/pop-poc"
+    path: "gitops/core/atlas"
+    directory:
+      recurse: true
+
   destination:
-    server: https://kubernetes.default.svc
+    server: "https://kubernetes.default.svc"
     namespace: metadata
+
   syncPolicy:
     automated:
       prune: true
