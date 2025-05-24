@@ -6,13 +6,18 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: { app: atlas }
+    matchLabels:
+      app: atlas
   template:
-    metadata: { labels: { app: atlas } }
+    metadata:
+      labels:
+        app: atlas
     spec:
       containers:
-      - name: atlas
-        image: bitnami/apache-atlas:2.3.0-debian-10-r0
-        ports:
-        - containerPort: 21000
+        - name: atlas
+          # use the official Apache Atlas image
+          image: apache/atlas:2.3.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 21000
 

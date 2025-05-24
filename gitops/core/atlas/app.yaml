@@ -6,15 +6,14 @@ metadata:
 spec:
   project: default
 
-  # point at your local manifests instead of a non-existent Helm chart
   source:
     repoURL: "https://github.com/dullbrowny/pop-poc"
-    path: "gitops/core/atlas"
+    path: gitops/core/atlas
     directory:
       recurse: true
 
   destination:
-    server: "https://kubernetes.default.svc"
+    server: https://kubernetes.default.svc
     namespace: metadata
 
   syncPolicy:

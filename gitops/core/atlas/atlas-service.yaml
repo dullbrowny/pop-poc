@@ -4,8 +4,10 @@ metadata:
   name: atlas
   namespace: metadata
 spec:
-  selector: { app: atlas }
+  selector:
+    app: atlas
   ports:
-    - port: 21000
+    - name: ui
+      port: 21000
       targetPort: 21000
 
