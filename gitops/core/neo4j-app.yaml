@@ -11,13 +11,25 @@ spec:
     targetRevision: "0.4.3"
     helm:
       values: |
-        auth:
-          username: demo
+        ## Tell Neo4j to listen on 0.0.0.0 instead of 127.0.0.1
+        neo4j:
+          name: neo4j
           password: Demo123
+          dbms:
+            default__listen__address: 0.0.0.0
+            default__advertised__address: neo4j.metadata.svc.cluster.local
+
+        ## Expose as ClusterIP
         service:
           type: ClusterIP
-        neo4j:
-          advertisedHost: neo4j.metadata.svc.cluster.local
+
+        ## (Temp) turn off liveness/readiness probes until it’s healthy
+        livenessProbe:
+          enabled: false
+        readinessProbe:
+          enabled: false
+
+        ## resource requests/limits
         resources:
           requests:
             cpu: 500m
@@ -25,6 +37,7 @@ spec:
           limits:
             cpu: 1
             memory: 1Gi
+
   destination:
     server: https://kubernetes.default.svc
     namespace: metadata
