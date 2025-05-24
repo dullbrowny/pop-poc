@@ -4,10 +4,8 @@ metadata:
   name: atlas
   namespace: metadata
 spec:
-  selector:
-    app: atlas
+  selector: { app: atlas }
   ports:
-  - protocol: TCP
-    port: 21000
-    targetPort: 21000
+    - port: 21000
+      targetPort: 21000
 

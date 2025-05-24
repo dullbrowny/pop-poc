@@ -6,15 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/dullbrowny/pop-poc"
+    repoURL: https://charts.bitnami.com/bitnami
     chart: apache-atlas
-    repoURL: "https://spanda-repo.example.com/helm-charts" # replace with your chart repo
-    targetRevision: "2.3.0"
+    targetRevision: "5.0.0"
     helm:
       values: |
         image:
-          repository: sburn/apache-atlas
-          tag: "2.3.0"
+          registry: docker.io
+          repository: bitnami/apache-atlas
+          tag: "2.3.0-debian-10-r0"
   destination:
     server: https://kubernetes.default.svc
     namespace: metadata

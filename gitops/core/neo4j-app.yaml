@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://charts.bitnami.com/bitnami"
+    repoURL: https://charts.bitnami.com/bitnami
     chart: neo4j
     targetRevision: "0.4.3"
     helm:
@@ -14,6 +14,10 @@ spec:
         auth:
           username: demo
           password: Demo123
+        service:
+          type: ClusterIP
+        neo4j:
+          advertisedHost: neo4j.metadata.svc.cluster.local
         resources:
           requests:
             cpu: 500m
@@ -21,10 +25,6 @@ spec:
           limits:
             cpu: 1
             memory: 1Gi
-        service:
-          type: ClusterIP
-        neo4j:
-          advertisedHost: neo4j.metadata.svc.cluster.local
   destination:
     server: https://kubernetes.default.svc
     namespace: metadata

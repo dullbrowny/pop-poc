@@ -5,20 +5,14 @@ metadata:
   namespace: metadata
 spec:
   replicas: 1
-  selector: { matchLabels: { app: atlas }}
+  selector:
+    matchLabels: { app: atlas }
   template:
-    metadata: { labels: { app: atlas }}
+    metadata: { labels: { app: atlas } }
     spec:
       containers:
       - name: atlas
         image: bitnami/apache-atlas:2.3.0-debian-10-r0
-        env:
-        - name: ATLAS_STORAGE_HOSTNAME
-          value: "neo4j.metadata.svc.cluster.local"
-        - name: ATLAS_STORAGE_USERNAME
-          value: "demo"
-        - name: ATLAS_STORAGE_PASSWORD
-          value: "Demo123"
         ports:
         - containerPort: 21000
 
