@@ -7,10 +7,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/dullbrowny/pop-poc
-    path: gitops
-    directory:
-      recurse: true
-      exclude: "core/policy/**,core/atlas/**,core/neo4j/**"
+    path: gitops/argocd-apps.yaml
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: default
