@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "<YOUR-REPO-URL>"
+    repoURL: "https://github.com/dullbrowny/pop-poc"
     path: gitops/core/policy/manifests
   destination:
     server: https://kubernetes.default.svc
