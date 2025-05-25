@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "<REPLACE_WITH_YOUR_GIT_URL>"
+    repoURL: "https://github.com/dullbrowny/pop-poc"
     path: gitops/modules/messaging
   destination:
     server: https://kubernetes.default.svc
