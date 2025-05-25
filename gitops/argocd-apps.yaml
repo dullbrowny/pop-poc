@@ -6,9 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/dullbrowny/pop-poc
-    path: gitops/argocd-apps.yaml
-    targetRevision: HEAD
+    repoURL: "https://github.com/dullbrowny/pop-poc"
+    path: gitops
+    directory:
+      recurse: true
+      # comma-separated globs to ignore all our child App folders
+      exclude: "core/**,modules/**"
   destination:
     server: https://kubernetes.default.svc
     namespace: default
