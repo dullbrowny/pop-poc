@@ -10,10 +10,7 @@ spec:
     path: gitops
     directory:
       recurse: true
-      exclude:
-        - "core/policy/**"
-        - "core/atlas/**"
-        - "core/neo4j/**"
+      exclude: "core/policy/**,core/atlas/**,core/neo4j/**"
   destination:
     server: https://kubernetes.default.svc
     namespace: default
