@@ -1,0 +1,92 @@
+---
+# 1) The “umbrella” pop-root app, points at the whole gitops/ dir but excludes the child modules
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pop-root
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dullbrowny/pop-poc
+    path: gitops
+    directory:
+      recurse: true
+      exclude:
+        - modules/atlas/**
+        - modules/neo4j/**
+        - modules/policy/**
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+---
+# 2) Atlas module
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: atlas
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dullbrowny/pop-poc
+    path: gitops/modules/atlas
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metadata
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+---
+# 3) Neo4j module
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: neo4j
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dullbrowny/pop-poc
+    path: gitops/modules/neo4j
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metadata
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+---
+# 4) Gatekeeper / policy module
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: policy-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dullbrowny/pop-poc
+    path: gitops/modules/policy
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gatekeeper-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
